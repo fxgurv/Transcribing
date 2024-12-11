@@ -1,26 +1,32 @@
-import re
+import os
 import json
-import time
-import asyncio
-import requests
-import string
+import random
 from config import *
 from uuid import uuid4
-from typing import List
 import assemblyai as aai
 from moviepy.editor import *
-from datetime import datetime
 from moviepy.video.fx.all import crop
 from moviepy.audio.fx.all import volumex
-from moviepy.config import change_settings
-from moviepy.video.tools.subtitles import SubtitlesClip
 
 change_settings({"IMAGEMAGICK_BINARY": get_imagemagick_path()})
 
-class YouTube:
+class SubtitlesGenerator:
     def __init__(self, tts_path, images):
         self.tts_path = tts_path
         self.images = images
+        info(f"Initialized YouTube processor with {len(images)} images")
+        assert_folder_structure()
+
+    def choose_random_music(self):
+        """Select random background music"""
+        music_dir = get_music_dir()
+        music_files = [f for f in os.listdir(music_dir) if f.endswith(('.mp3', '.wav'))]
+        if not music_files:
+            warning("No music files found in music directory")
+            return None
+        chosen_music = random.choice(music_files)
+        info(f"Selected background music: {chosen_music}")
+        return os.path.join(music_dir, chosen_music)
 
 
     
