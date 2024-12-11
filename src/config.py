@@ -1,27 +1,17 @@
 import os
 import sys
 import json
+from termcolor import colored
 
 ROOT_DIR = os.path.dirname(sys.path[0])
-
-
-from termcolor import colored
 
 def error(message: str, show_emoji: bool = True) -> None:
     emoji = "[ERROR]" if show_emoji else ""
     print(colored(f"{emoji} {message}", "white"))
 
-def success(message: str, show_emoji: bool = True) -> None:
-    emoji = "[SUCCESS]" if show_emoji else ""
-    print(colored(f"{emoji} {message}", "green"))
-
 def info(message: str, show_emoji: bool = True) -> None:
     emoji = "[INFO]" if show_emoji else ""
     print(colored(f"{emoji} {message}", "white"))
-
-def warning(message: str, show_emoji: bool = True) -> None:
-    emoji = "[WARNING]" if show_emoji else ""
-    print(colored(f"{emoji} {message}", "yellow"))
 
 def get_fonts_dir() -> str:
     return os.path.join(ROOT_DIR, "fonts")
@@ -50,11 +40,11 @@ def get_dimension() -> str:
 def get_highlight() -> bool:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
         return json.load(file)["highlight"]
-#define transcriber "assamblya" whisper "edge" "google"
+
 def get_transcriber() -> bool:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
         return json.load(file)["transcriber"]
-# define whisper model base, small, medium, or large
+
 def get_transcriber_model() -> bool:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
         return json.load(file)["transcriber_model"]
