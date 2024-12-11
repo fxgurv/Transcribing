@@ -5,6 +5,7 @@
   "threads": 4,
   "font": "LuckeyGuy.ttf",
   "max_duration": 3.0,
+  "max_lines": 2,  
   "max_chars": 30,
   "max_gap": 0.5,
   "font_size": 80,
