@@ -29,8 +29,8 @@ class SubtitlesGenerator:
         return os.path.join(music_dir, chosen_music)
     
     def generate_subtitles(self, audio_path: str):
-        """Generate visually enhanced highlighted subtitles."""
-        info("Starting subtitle generation process")
+        """Generate visually enhanced word-highlighted subtitles with improved positioning and styling."""
+        info("🎬 Starting enhanced subtitle generation process")
         
         try:
             # Configure AssemblyAI
@@ -84,7 +84,7 @@ class SubtitlesGenerator:
                 current_line = " ".join(item["word"] for item in line)
                 current_chars = len(current_line)
                 
-                # line breaking logic
+                # Enhanced line breaking logic
                 should_break = False
                 
                 # Check various conditions for line breaks
@@ -122,7 +122,7 @@ class SubtitlesGenerator:
                 }
                 subtitles.append(subtitle_line)
             
-            # subtitle clip generation with positioning
+            # Enhanced subtitle clip generation with improved positioning
             info("🎨 Generating visually enhanced subtitle clips")
             all_subtitle_clips = []
             
@@ -135,7 +135,7 @@ class SubtitlesGenerator:
                 frame_width, frame_height = FRAME_SIZE
                 base_y_pos = frame_height * 0.8  # Position subtitles lower
                 x_margin = frame_width * 0.08  # Increased margin for better appearance
-                word_spacing = 15  # spacing between words
+                word_spacing = 15  # Increased spacing between words
                 
                 x_pos = 0
                 y_pos = base_y_pos
@@ -149,7 +149,7 @@ class SubtitlesGenerator:
                         wordJSON['word'],
                         font=font,
                         fontsize=get_font_size(),
-                        color=get_text_color(),
+                        color=get_subtitle_color(),
                         stroke_color=get_stroke_color(),
                         stroke_width=get_stroke_width()
                     )
@@ -182,7 +182,7 @@ class SubtitlesGenerator:
                         wordJSON['word'],
                         font=font,
                         fontsize=get_font_size(),
-                        color=get_text_color(),
+                        color=get_subtitle_color(),
                         stroke_color=get_stroke_color(),
                         stroke_width=get_stroke_width()
                     ).set_start(subtitle['start']).set_duration(full_duration)
@@ -199,8 +199,8 @@ class SubtitlesGenerator:
                         highlight_word['word'],
                         font=font,
                         fontsize=get_font_size(),
-                        color=get_text_color(),
-                        bg_color=get_bg_color(),
+                        color=get_subtitle_color(),
+                        bg_color=get_highlight_color(),
                         stroke_color=get_stroke_color(),
                         stroke_width=get_stroke_width()
                     ).set_start(highlight_word['start']).set_duration(highlight_word['duration'])
