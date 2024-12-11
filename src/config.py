@@ -61,9 +61,13 @@ def get_imagemagick_path() -> str:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
         return json.load(file)["imagemagick_path"]
 
+def get_effect() -> str:
+    with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
+        return json.load(file)["font"]
+
 def get_max_duration() -> float:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
-        return json.load(file)["max_duration"]
+        return json.load(file)["effect"]
 
 def get_max_chars() -> int:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
