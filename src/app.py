@@ -18,6 +18,12 @@ from moviepy.video.tools.subtitles import SubtitlesClip
 change_settings({"IMAGEMAGICK_BINARY": get_imagemagick_path()})
 
 class YouTube:
+    def __init__(self, tts_path, images):
+        self.tts_path = tts_path
+        self.images = images
+
+
+    
     def generate_subtitles(self, audio_path: str):
         """Generate visually enhanced word-highlighted subtitles with improved positioning and styling."""
         info("🎬 Starting enhanced subtitle generation process")
