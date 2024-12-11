@@ -79,6 +79,10 @@ def get_max_chars() -> int:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
         return json.load(file)["max_chars"]
 
+def get_lines_chars() -> int:
+    with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
+        return json.load(file)["max_lines"]
+
 def get_max_gap() -> float:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
         return json.load(file)["max_gap"]
