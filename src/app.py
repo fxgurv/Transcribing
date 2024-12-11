@@ -7,6 +7,9 @@ import assemblyai as aai
 from moviepy.editor import *
 from moviepy.video.fx.all import crop
 from moviepy.audio.fx.all import volumex
+from moviepy.config import change_settings
+from moviepy.video.tools.subtitles import SubtitlesClip
+from effect import zoom_in_effect, zoom_out_effect, rotate_effect
 
 change_settings({"IMAGEMAGICK_BINARY": get_imagemagick_path()})
 
