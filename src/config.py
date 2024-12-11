@@ -47,12 +47,11 @@ def get_highlight() -> bool:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
         return json.load(file)["highlight"]
 
-#you can define transcriber "assamblya" whisper "edge" "google"
-
+#define transcriber "assamblya" whisper "edge" "google"
 def get_transcriber() -> bool:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
         return json.load(file)["transcriber"]
-
+# define whisper model base, small, medium, or large
 def get_transcriber_model() -> bool:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
         return json.load(file)["transcriber_model"]
