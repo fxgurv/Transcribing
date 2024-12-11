@@ -1,5 +1,6 @@
 {
   "subtitles": true,
+  "dimension": "portrait",
   "threads": 4,
   "transcriber": "assemblyai",
   "transcriber_model": "base",
