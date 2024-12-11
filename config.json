@@ -9,7 +9,7 @@
   "max_gap": 0.5,
   "font_size": 80,
   "subtitle_color": "white",
-  "highlight": true,  // Consider removing or using appropriately
+  "highlight": true,
   "highlight_color": "rgba(0,0,0,0.4)",
   "stroke_color": "black",
   "stroke_width": 2,
