@@ -31,78 +31,56 @@ class SubtitlesGenerator:
         info(f"Selected background music: {chosen_music}")
         return os.path.join(music_dir, chosen_music)
     
+    def get_frame_size(self):
+        """Get frame size based on dimension setting"""
+        dimension = get_dimension()
+        if dimension == "portrait":
+            return (1080, 1920)
+        elif dimension == "landscape":
+            return (1920, 1080)
+        else:  # square
+            return (1080, 1080)
+
     def generate_subtitles(self, audio_path: str):
-        """Generate visually enhanced word-highlighted subtitles with improved positioning and styling."""
-        info("🎬 Starting enhanced subtitle generation process")
+        """Generate visually enhanced word-highlighted subtitles"""
+        info("Starting subtitle generation process")
         
         try:
             # Configure AssemblyAI
-            info("🔑 Configuring AssemblyAI")
             aai.settings.api_key = get_assemblyai_api_key()
-            config = aai.TranscriptionConfig(
-                speaker_labels=False,
-                word_boost=[],
-                format_text=True
-            )
-            transcriber = aai.Transcriber(config=config)
+            transcriber = aai.Transcriber()
             
             # Get font configuration
             font = os.path.join(get_fonts_dir(), get_font())
             
             # Transcribe audio
-            info("🎙️ Transcribing audio content")
             transcript = transcriber.transcribe(audio_path)
             
-            # Enhanced word-level processing with improved timing
-            info("📝 Processing word-level information with enhanced timing")
+            # Process word-level information
             wordlevel_info = []
             for word in transcript.words:
-                # Add small padding between words for better timing
                 word_data = {
                     "word": word.text.strip(),
                     "start": word.start / 1000.0,
-                    "end": (word.end / 1000.0) + 0.05  # Add slight padding
+                    "end": (word.end / 1000.0) + 0.05
                 }
                 wordlevel_info.append(word_data)
             
-            # Save word-level JSON
-            wordlevel_json = os.path.join(ROOT_DIR, ".mp", f"{uuid4()}_wordlevel.json")
-            with open(wordlevel_json, 'w') as f:
-                json.dump(wordlevel_info, f, indent=4)
-            
-            # Enhanced subtitle line generation with improved breaking
-            info("📑 Generating optimized subtitle lines")
+            # Generate subtitle lines
             subtitles = []
             line = []
             line_duration = 0
-            optimal_chars = get_max_chars() * 0.7  # Target optimal line length
             
             for idx, word_data in enumerate(wordlevel_info):
-                word = word_data["word"]
-                start = word_data["start"]
-                end = word_data["end"]
-                
                 line.append(word_data)
-                line_duration += end - start
+                line_duration = word_data["end"] - line[0]["start"]
                 current_line = " ".join(item["word"] for item in line)
-                current_chars = len(current_line)
                 
-                # Enhanced line breaking logic
-                should_break = False
-                
-                # Check various conditions for line breaks
-                if current_chars >= optimal_chars:
-                    should_break = True
-                elif line_duration >= MAX_DURATION * 0.8:
-                    should_break = True
-                elif idx > 0:
-                    gap = word_data['start'] - wordlevel_info[idx - 1]['end']
-                    if gap > MAX_GAP * 0.5:
-                        should_break = True
-                
-                # Natural break points
-                if word.endswith(('.', '!', '?', ':', ';')):
-                    should_break = True
+                should_break = (
+                    len(current_line) >= get_max_chars() or
+                    line_duration >= get_max_duration() or
+                    (idx > 0 and word_data['start'] - wordlevel_info[idx-1]['end'] > get_max_gap())
+                )
                 
                 if should_break and line:
                     subtitle_line = {
@@ -115,74 +93,29 @@ class SubtitlesGenerator:
                     line = []
                     line_duration = 0
             
-            # Handle remaining words with grace
+            # Handle remaining words
             if line:
-                subtitle_line = {
+                subtitles.append({
                     "text": " ".join(item["word"] for item in line),
                     "start": line[0]["start"],
                     "end": line[-1]["end"],
                     "words": line
-                }
-                subtitles.append(subtitle_line)
+                })
             
-            # Enhanced subtitle clip generation with improved positioning
-            info("🎨 Generating visually enhanced subtitle clips")
+            # Generate subtitle clips
+            frame_width, frame_height = self.get_frame_size()
             all_subtitle_clips = []
             
             for subtitle in subtitles:
                 full_duration = subtitle['end'] - subtitle['start']
                 word_clips = []
-                xy_textclips_positions = []
+                x_pos = frame_width * 0.1  # 10% margin
+                y_pos = frame_height * 0.8  # Position at 80% of height
                 
-                # Dynamic positioning calculation
-                frame_width, frame_height = FRAME_SIZE
-                base_y_pos = frame_height * 0.8  # Position subtitles lower
-                x_margin = frame_width * 0.08  # Increased margin for better appearance
-                word_spacing = 15  # Increased spacing between words
-                
-                x_pos = 0
-                y_pos = base_y_pos
-                current_line_width = 0
-                max_line_width = frame_width - (2 * x_margin)
-                
-                # Enhanced word styling and positioning
-                for wordJSON in subtitle['words']:
-                    # Create temporary clip to measure size
-                    temp_clip = TextClip(
-                        wordJSON['word'],
-                        font=font,
-                        fontsize=get_font_size(),
-                        color=get_subtitle_color(),
-                        stroke_color=get_stroke_color(),
-                        stroke_width=get_stroke_width()
-                    )
-                    
-                    word_width, word_height = temp_clip.size
-                    
-                    # Check if word needs to go to next line
-                    if current_line_width + word_width > max_line_width:
-                        x_pos = 0
-                        y_pos += word_height * 1.2  # Add 20% extra spacing between lines
-                        current_line_width = 0
-                    
-                    # Calculate centered position for current line
-                    x_position = x_pos + x_margin
-                    
-                    # Store position information
-                    xy_textclips_positions.append({
-                        "x_pos": x_position,
-                        "y_pos": y_pos,
-                        "width": word_width,
-                        "height": word_height,
-                        "word": wordJSON['word'],
-                        "start": wordJSON['start'],
-                        "end": wordJSON['end'],
-                        "duration": wordJSON['end'] - wordJSON['start']
-                    })
-                    
-                    # Create and position the word clip
+                for word_data in subtitle['words']:
+                    # Create word clip
                     word_clip = TextClip(
-                        wordJSON['word'],
+                        word_data['word'],
                         font=font,
                         fontsize=get_font_size(),
                         color=get_subtitle_color(),
@@ -190,106 +123,102 @@ class SubtitlesGenerator:
                         stroke_width=get_stroke_width()
                     ).set_start(subtitle['start']).set_duration(full_duration)
                     
-                    word_clip = word_clip.set_position((x_position, y_pos))
+                    word_clip = word_clip.set_position((x_pos, y_pos))
                     word_clips.append(word_clip)
                     
-                    x_pos += word_width + word_spacing
-                    current_line_width += word_width + word_spacing
-                
-                # Enhanced highlight effects with smooth transitions
-                for highlight_word in xy_textclips_positions:
-                    word_clip_highlight = TextClip(
-                        highlight_word['word'],
-                        font=font,
-                        fontsize=get_font_size(),
-                        color=get_subtitle_color(),
-                        bg_color=get_highlight_color(),
-                        stroke_color=get_stroke_color(),
-                        stroke_width=get_stroke_width()
-                    ).set_start(highlight_word['start']).set_duration(highlight_word['duration'])
+                    # Add highlight effect if enabled
+                    if get_highlight():
+                        highlight_clip = TextClip(
+                            word_data['word'],
+                            font=font,
+                            fontsize=get_font_size(),
+                            color=get_subtitle_color(),
+                            bg_color=get_highlight_color(),
+                            stroke_color=get_stroke_color(),
+                            stroke_width=get_stroke_width()
+                        ).set_start(word_data['start']).set_duration(word_data['end'] - word_data['start'])
+                        
+                        highlight_clip = highlight_clip.set_position((x_pos, y_pos))
+                        highlight_clip = highlight_clip.crossfadein(0.1).crossfadeout(0.1)
+                        word_clips.append(highlight_clip)
                     
-                    # Add fade effect for smooth transitions
-                    word_clip_highlight = word_clip_highlight.crossfadein(0.1).crossfadeout(0.1)
-                    
-                    word_clip_highlight = word_clip_highlight.set_position(
-                        (highlight_word['x_pos'], highlight_word['y_pos'])
-                    )
-                    word_clips.append(word_clip_highlight)
+                    x_pos += word_clip.w + 15  # Add spacing between words
                 
                 all_subtitle_clips.extend(word_clips)
             
-            info(f"✨ Successfully generated {len(all_subtitle_clips)} enhanced subtitle clips")
             return all_subtitle_clips
             
         except Exception as e:
-            error(f"❌ Enhanced subtitle generation failed: {str(e)}")
+            error(f"Subtitle generation failed: {str(e)}")
             return []
 
     def combine(self) -> str:
-        """Combine all elements into final video."""
-        info("Starting to combine all elements into the final video")
+        """Combine all elements into final video"""
+        info("Starting video combination process")
         combined_image_path = os.path.join(ROOT_DIR, ".mp", f"{uuid4()}.mp4")
-        threads = get_threads()
         
         tts_clip = AudioFileClip(self.tts_path)
         max_duration = tts_clip.duration
         req_dur = max_duration / len(self.images)
         
+        frame_width, frame_height = self.get_frame_size()
         clips = []
         tot_dur = 0
+        
         while tot_dur < max_duration:
             for image_path in self.images:
                 clip = ImageClip(image_path)
-                clip.duration = req_dur
+                clip = clip.set_duration(req_dur)
                 clip = clip.set_fps(30)
-
-                # Intelligent cropping for different aspect ratios
-                aspect_ratio = 9/16  # Standard vertical video ratio
-                if clip.w / clip.h < aspect_ratio:
-                    clip = crop(
-                        clip, 
-                        width=clip.w, 
-                        height=round(clip.w / aspect_ratio), 
-                        x_center=clip.w / 2, 
-                        y_center=clip.h / 2
-                    )
+                
+                # Resize maintaining aspect ratio
+                aspect_ratio = frame_width / frame_height
+                if clip.w / clip.h > aspect_ratio:
+                    new_width = int(clip.h * aspect_ratio)
+                    clip = crop(clip, width=new_width, height=clip.h, x_center=clip.w/2)
                 else:
-                    clip = crop(
-                        clip, 
-                        width=round(aspect_ratio * clip.h), 
-                        height=clip.h, 
-                        x_center=clip.w / 2, 
-                        y_center=clip.h / 2
-                    )
-
-                clip = clip.resize((1080, 1920))
-
+                    new_height = int(clip.w / aspect_ratio)
+                    clip = crop(clip, width=clip.w, height=new_height, y_center=clip.h/2)
+                
+                clip = clip.resize((frame_width, frame_height))
                 clips.append(clip)
                 tot_dur += clip.duration
 
         final_clip = concatenate_videoclips(clips)
         final_clip = final_clip.set_fps(30)
         
-        random_Music = choose_random_music()
-        random_Music_clip = AudioFileClip(random_Music)
-        random_Music_clip = random_Music_clip.fx(volumex, 0.1)
-        random_Music_clip = random_Music_clip.set_duration(max_duration)
-        
-        word_highlighted_clips = self.generate_subtitles(self.tts_path)
-        
-        comp_audio = CompositeAudioClip([
-            tts_clip,
-            random_Music_clip
-        ])
-
-        final_clip = final_clip.set_audio(comp_audio)
-        final_clip = final_clip.set_duration(tts_clip.duration)
-
-        final_clip = CompositeVideoClip([
-            final_clip
-        ] + word_highlighted_clips)
-
-        final_clip.write_videofile(combined_image_path, threads=threads)
-
-        success(f"Video successfully created at: {combined_image_path}")
-        return combined_image_path
+        # Add background music
+        random_music = self.choose_random_music()
+        if random_music:
+            background_music = AudioFileClip(random_music)
+            background_music = background_music.volumex(0.1)
+            background_music = background_music.set_duration(max_duration)
+            
+            # Generate subtitles if enabled
+            subtitle_clips = []
+            if get_subtitles():
+                subtitle_clips = self.generate_subtitles(self.tts_path)
+            
+            # Combine audio
+            final_audio = CompositeAudioClip([tts_clip, background_music])
+            final_clip = final_clip.set_audio(final_audio)
+            final_clip = final_clip.set_duration(max_duration)
+            
+            # Add subtitles if available
+            if subtitle_clips:
+                final_clip = CompositeVideoClip([final_clip] + subtitle_clips)
+            
+            # Write final video
+            final_clip.write_videofile(
+                combined_image_path,
+                threads=get_threads(),
+                fps=30,
+                codec='libx264',
+                audio_codec='aac'
+            )
+            
+            success(f"Video successfully created at: {combined_image_path}")
+            return combined_image_path
+        else:
+            error("No background music available")
+            return None
