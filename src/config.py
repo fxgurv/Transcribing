@@ -29,6 +29,12 @@ def get_fonts_dir() -> str:
 def get_music_dir() -> str:
     return os.path.join(ROOT_DIR, "music")
 
+def assert_folder_structure() -> None:
+    if not os.path.exists(os.path.join(ROOT_DIR, ".mp")):
+        if get_verbose():
+            print(colored(f"Creating .mp folder at {os.path.join(ROOT_DIR, '.mp')}", "green"))
+        os.makedirs(os.path.join(ROOT_DIR, ".mp"))
+
 def get_threads() -> int:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
         return json.load(file)["threads"]
@@ -37,16 +43,13 @@ def get_subtitles() -> bool:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
         return json.load(file)["subtitle"]
 
-def assert_folder_structure() -> None:
-    if not os.path.exists(os.path.join(ROOT_DIR, ".mp")):
-        if get_verbose():
-            print(colored(f"Creating .mp folder at {os.path.join(ROOT_DIR, '.mp')}", "green"))
-        os.makedirs(os.path.join(ROOT_DIR, ".mp"))
+def get_dimension() -> str:
+    with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
+        return json.load(file)["dimension"]
 
 def get_highlight() -> bool:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
         return json.load(file)["highlight"]
-
 #define transcriber "assamblya" whisper "edge" "google"
 def get_transcriber() -> bool:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
