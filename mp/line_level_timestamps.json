@@ -1,0 +1,480 @@
+[
+    {
+        "text": "The rapid development of artificial",
+        "start": 0.32,
+        "end": 2.033,
+        "words": [
+            {
+                "word": "The",
+                "start": 0.32,
+                "end": 0.456
+            },
+            {
+                "word": "rapid",
+                "start": 0.456,
+                "end": 0.84
+            },
+            {
+                "word": "development",
+                "start": 0.84,
+                "end": 1.16
+            },
+            {
+                "word": "of",
+                "start": 1.193,
+                "end": 1.377
+            },
+            {
+                "word": "artificial",
+                "start": 1.401,
+                "end": 2.033
+            }
+        ]
+    },
+    {
+        "text": "intelligence is poised to revolutionize",
+        "start": 2.089,
+        "end": 4.433,
+        "words": [
+            {
+                "word": "intelligence",
+                "start": 2.089,
+                "end": 2.721
+            },
+            {
+                "word": "is",
+                "start": 2.793,
+                "end": 3.025
+            },
+            {
+                "word": "poised",
+                "start": 3.065,
+                "end": 3.393
+            },
+            {
+                "word": "to",
+                "start": 3.449,
+                "end": 3.617
+            },
+            {
+                "word": "revolutionize",
+                "start": 3.641,
+                "end": 4.433
+            }
+        ]
+    },
+    {
+        "text": "our lives, including the workforce.",
+        "start": 4.489,
+        "end": 6.529,
+        "words": [
+            {
+                "word": "our",
+                "start": 4.489,
+                "end": 4.681
+            },
+            {
+                "word": "lives,",
+                "start": 4.713,
+                "end": 5.049
+            },
+            {
+                "word": "including",
+                "start": 5.137,
+                "end": 5.457
+            },
+            {
+                "word": "the",
+                "start": 5.521,
+                "end": 5.745
+            },
+            {
+                "word": "workforce.",
+                "start": 5.785,
+                "end": 6.529
+            }
+        ]
+    },
+    {
+        "text": "As AI becomes more sophisticated,",
+        "start": 6.657,
+        "end": 8.673,
+        "words": [
+            {
+                "word": "As",
+                "start": 6.657,
+                "end": 6.897
+            },
+            {
+                "word": "AI",
+                "start": 6.921,
+                "end": 7.169
+            },
+            {
+                "word": "becomes",
+                "start": 7.217,
+                "end": 7.601
+            },
+            {
+                "word": "more",
+                "start": 7.633,
+                "end": 7.897
+            },
+            {
+                "word": "sophisticated,",
+                "start": 7.961,
+                "end": 8.673
+            }
+        ]
+    },
+    {
+        "text": "it will increasingly automate tasks",
+        "start": 8.729,
+        "end": 10.753,
+        "words": [
+            {
+                "word": "it",
+                "start": 8.729,
+                "end": 8.873
+            },
+            {
+                "word": "will",
+                "start": 8.889,
+                "end": 9.089
+            },
+            {
+                "word": "increasingly",
+                "start": 9.137,
+                "end": 9.769
+            },
+            {
+                "word": "automate",
+                "start": 9.817,
+                "end": 10.313
+            },
+            {
+                "word": "tasks",
+                "start": 10.369,
+                "end": 10.753
+            }
+        ]
+    },
+    {
+        "text": "that have traditionally been carried",
+        "start": 10.809,
+        "end": 12.345,
+        "words": [
+            {
+                "word": "that",
+                "start": 10.809,
+                "end": 10.977
+            },
+            {
+                "word": "have",
+                "start": 11.001,
+                "end": 11.185
+            },
+            {
+                "word": "traditionally",
+                "start": 11.225,
+                "end": 11.697
+            },
+            {
+                "word": "been",
+                "start": 11.761,
+                "end": 11.985
+            },
+            {
+                "word": "carried",
+                "start": 12.025,
+                "end": 12.345
+            }
+        ]
+    },
+    {
+        "text": "out by humans. This has the potential",
+        "start": 12.385,
+        "end": 14.665,
+        "words": [
+            {
+                "word": "out",
+                "start": 12.385,
+                "end": 12.585
+            },
+            {
+                "word": "by",
+                "start": 12.625,
+                "end": 12.825
+            },
+            {
+                "word": "humans.",
+                "start": 12.865,
+                "end": 13.417
+            },
+            {
+                "word": "This",
+                "start": 13.521,
+                "end": 13.785
+            },
+            {
+                "word": "has",
+                "start": 13.825,
+                "end": 13.977
+            },
+            {
+                "word": "the",
+                "start": 14.001,
+                "end": 14.185
+            },
+            {
+                "word": "potential",
+                "start": 14.225,
+                "end": 14.665
+            }
+        ]
+    },
+    {
+        "text": "to create significant displacement",
+        "start": 14.745,
+        "end": 16.753,
+        "words": [
+            {
+                "word": "to",
+                "start": 14.745,
+                "end": 14.937
+            },
+            {
+                "word": "create",
+                "start": 14.961,
+                "end": 15.289
+            },
+            {
+                "word": "significant",
+                "start": 15.377,
+                "end": 15.913
+            },
+            {
+                "word": "displacement",
+                "start": 16.049,
+                "end": 16.753
+            }
+        ]
+    },
+    {
+        "text": "within the workforce, but it also",
+        "start": 16.809,
+        "end": 19.089,
+        "words": [
+            {
+                "word": "within",
+                "start": 16.809,
+                "end": 17.025
+            },
+            {
+                "word": "the",
+                "start": 17.065,
+                "end": 17.241
+            },
+            {
+                "word": "workforce,",
+                "start": 17.273,
+                "end": 18.129
+            },
+            {
+                "word": "but",
+                "start": 18.297,
+                "end": 18.577
+            },
+            {
+                "word": "it",
+                "start": 18.601,
+                "end": 18.737
+            },
+            {
+                "word": "also",
+                "start": 18.761,
+                "end": 19.089
+            }
+        ]
+    },
+    {
+        "text": "offers opportunities for the creation",
+        "start": 19.177,
+        "end": 21.449,
+        "words": [
+            {
+                "word": "offers",
+                "start": 19.177,
+                "end": 19.705
+            },
+            {
+                "word": "opportunities",
+                "start": 19.785,
+                "end": 20.505
+            },
+            {
+                "word": "for",
+                "start": 20.585,
+                "end": 20.801
+            },
+            {
+                "word": "the",
+                "start": 20.833,
+                "end": 21.025
+            },
+            {
+                "word": "creation",
+                "start": 21.065,
+                "end": 21.449
+            }
+        ]
+    },
+    {
+        "text": "of new jobs and industries. It's",
+        "start": 21.497,
+        "end": 23.825,
+        "words": [
+            {
+                "word": "of",
+                "start": 21.497,
+                "end": 21.681
+            },
+            {
+                "word": "new",
+                "start": 21.713,
+                "end": 21.929
+            },
+            {
+                "word": "jobs",
+                "start": 21.977,
+                "end": 22.265
+            },
+            {
+                "word": "and",
+                "start": 22.305,
+                "end": 22.529
+            },
+            {
+                "word": "industries.",
+                "start": 22.577,
+                "end": 23.281
+            },
+            {
+                "word": "It's",
+                "start": 23.433,
+                "end": 23.825
+            }
+        ]
+    },
+    {
+        "text": "crucial to understand the potential",
+        "start": 23.865,
+        "end": 25.793,
+        "words": [
+            {
+                "word": "crucial",
+                "start": 23.865,
+                "end": 24.233
+            },
+            {
+                "word": "to",
+                "start": 24.289,
+                "end": 24.553
+            },
+            {
+                "word": "understand",
+                "start": 24.609,
+                "end": 24.969
+            },
+            {
+                "word": "the",
+                "start": 25.057,
+                "end": 25.305
+            },
+            {
+                "word": "potential",
+                "start": 25.345,
+                "end": 25.793
+            }
+        ]
+    },
+    {
+        "text": "implications and prepare for the",
+        "start": 25.889,
+        "end": 27.889,
+        "words": [
+            {
+                "word": "implications",
+                "start": 25.889,
+                "end": 26.617
+            },
+            {
+                "word": "and",
+                "start": 26.721,
+                "end": 27.009
+            },
+            {
+                "word": "prepare",
+                "start": 27.057,
+                "end": 27.449
+            },
+            {
+                "word": "for",
+                "start": 27.497,
+                "end": 27.657
+            },
+            {
+                "word": "the",
+                "start": 27.681,
+                "end": 27.889
+            }
+        ]
+    },
+    {
+        "text": "impact of AI on the future of employment.",
+        "start": 27.937,
+        "end": 29.865,
+        "words": [
+            {
+                "word": "impact",
+                "start": 27.937,
+                "end": 28.193
+            },
+            {
+                "word": "of",
+                "start": 28.249,
+                "end": 28.417
+            },
+            {
+                "word": "AI",
+                "start": 28.441,
+                "end": 28.705
+            },
+            {
+                "word": "on",
+                "start": 28.745,
+                "end": 28.897
+            },
+            {
+                "word": "the",
+                "start": 28.921,
+                "end": 29.057
+            },
+            {
+                "word": "future",
+                "start": 29.081,
+                "end": 29.289
+            },
+            {
+                "word": "of",
+                "start": 29.337,
+                "end": 29.569
+            },
+            {
+                "word": "employment.",
+                "start": 29.617,
+                "end": 29.865
+            }
+        ]
+    }
+]

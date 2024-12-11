@@ -1,0 +1,122 @@
+[
+    {
+        "word": "The",
+        "start": 0.32,
+        "end": 0.456
+    },
+    {
+        "word": "rapid",
+        "start": 0.456,
+        "end": 0.84
+    },
+    {
+        "word": "development",
+        "start": 0.84,
+        "end": 1.16
+    },
+    {
+        "word": "of",
+        "start": 1.193,
+        "end": 1.377
+    },
+    {
+        "word": "artificial",
+        "start": 1.401,
+        "end": 2.033
+    },
+    {
+        "word": "intelligence",
+        "start": 2.089,
+        "end": 2.721
+    },
+    {
+        "word": "is",
+        "start": 2.793,
+        "end": 3.025
+    },
+    {
+        "word": "poised",
+        "start": 3.065,
+        "end": 3.393
+    },
+    {
+        "word": "to",
+        "start": 3.449,
+        "end": 3.617
+    },
+    {
+        "word": "revolutionize",
+        "start": 3.641,
+        "end": 4.433
+    },
+    {
+        "word": "our",
+        "start": 4.489,
+        "end": 4.681
+    },
+    {
+        "word": "lives,",
+        "start": 4.713,
+        "end": 5.049
+    },
+    {
+        "word": "including",
+        "start": 5.137,
+        "end": 5.457
+    },
+    {
+        "word": "the",
+        "start": 5.521,
+        "end": 5.745
+    },
+    {
+        "word": "workforce.",
+        "start": 5.785,
+        "end": 6.529
+    },
+    {
+        "word": "As",
+        "start": 6.657,
+        "end": 6.897
+    },
+    {
+        "word": "AI",
+        "start": 6.921,
+        "end": 7.169
+    },
+    {
+        "word": "becomes",
+        "start": 7.217,
+        "end": 7.601
+    },
+    {
+        "word": "more",
+        "start": 7.633,
+        "end": 7.897
+    },
+    {
+        "word": "sophisticated,",
+        "start": 7.961,
+        "end": 8.673
+    },
+    {
+        "word": "it",
+        "start": 8.729,
+        "end": 8.873
+    },
+    {
+        "word": "will",
+        "start": 8.889,
+        "end": 9.089
+    },
+    {
+        "word": "increasingly",
+        "start": 9.137,
+        "end": 9.769
+    },
+    {
+        "word": "automate",
+        "start": 9.817,
+        "end": 10.313
+    }
+]
