@@ -1,10 +1,8 @@
 {
   "subtitles": true,
-  "dimension": "portrait or landscape or squre",
-  "effect": "rendome or zoom_in or zoom_out or rotait",
+  "dimension": "portrait",
+  "effect": "zoom_in",
   "threads": 4,
-  "transcriber": "assemblyai or whisper or faster-whisper",
-  "transcriber_model": "base or small or medium, or large",
   "font": "LuckeyGuy.ttf",
   "max_duration": 3.0,
   "max_chars": 30,
