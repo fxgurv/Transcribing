@@ -89,7 +89,7 @@ def get_font_size() -> int:
 
 def get_subtitle_color() -> str:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
-        return json.load(file)["text_color"]
+        return json.load(file)["subtitle_color"]
 
 def get_highlight_color() -> str:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
