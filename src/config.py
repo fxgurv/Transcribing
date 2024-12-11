@@ -29,6 +29,10 @@ def get_fonts_dir() -> str:
 def get_music_dir() -> str:
     return os.path.join(ROOT_DIR, "music")
 
+def get_threads() -> int:
+    with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
+        return json.load(file)["threads"]
+
 def get_subtitles() -> bool:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
         return json.load(file)["subtitle"]
