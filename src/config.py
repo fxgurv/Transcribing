@@ -31,7 +31,7 @@ def get_threads() -> int:
 
 def get_subtitles() -> bool:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
-        return json.load(file)["subtitle"]
+        return json.load(file)["subtitles"]
 
 def get_dimension() -> str:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
@@ -40,14 +40,6 @@ def get_dimension() -> str:
 def get_highlight() -> bool:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
         return json.load(file)["highlight"]
-
-def get_transcriber() -> bool:
-    with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
-        return json.load(file)["transcriber"]
-
-def get_transcriber_model() -> bool:
-    with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
-        return json.load(file)["transcriber_model"]
 
 def get_assemblyai_api_key() -> str:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
@@ -63,11 +55,11 @@ def get_imagemagick_path() -> str:
 
 def get_effect() -> str:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
-        return json.load(file)["font"]
+        return json.load(file)["effect"]
 
 def get_max_duration() -> float:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
-        return json.load(file)["effect"]
+        return json.load(file)["max_duration"]
 
 def get_max_chars() -> int:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
