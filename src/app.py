@@ -14,7 +14,7 @@ class SubtitlesGenerator:
     def __init__(self, tts_path, images):
         self.tts_path = tts_path
         self.images = images
-        info(f"Initialized YouTube processor with {len(images)} images")
+        info(f"Initialized SubtitlesGenerator with {len(images)} images")
         assert_folder_structure()
 
     def choose_random_music(self):
@@ -27,12 +27,10 @@ class SubtitlesGenerator:
         chosen_music = random.choice(music_files)
         info(f"Selected background music: {chosen_music}")
         return os.path.join(music_dir, chosen_music)
-
-
     
     def generate_subtitles(self, audio_path: str):
-        """Generate visually enhanced word-highlighted subtitles with improved positioning and styling."""
-        info("🎬 Starting enhanced subtitle generation process")
+        """Generate visually enhanced highlighted subtitles."""
+        info("Starting subtitle generation process")
         
         try:
             # Configure AssemblyAI
@@ -86,7 +84,7 @@ class SubtitlesGenerator:
                 current_line = " ".join(item["word"] for item in line)
                 current_chars = len(current_line)
                 
-                # Enhanced line breaking logic
+                # line breaking logic
                 should_break = False
                 
                 # Check various conditions for line breaks
@@ -124,7 +122,7 @@ class SubtitlesGenerator:
                 }
                 subtitles.append(subtitle_line)
             
-            # Enhanced subtitle clip generation with improved positioning
+            # subtitle clip generation with positioning
             info("🎨 Generating visually enhanced subtitle clips")
             all_subtitle_clips = []
             
@@ -137,7 +135,7 @@ class SubtitlesGenerator:
                 frame_width, frame_height = FRAME_SIZE
                 base_y_pos = frame_height * 0.8  # Position subtitles lower
                 x_margin = frame_width * 0.08  # Increased margin for better appearance
-                word_spacing = 15  # Increased spacing between words
+                word_spacing = 15  # spacing between words
                 
                 x_pos = 0
                 y_pos = base_y_pos
