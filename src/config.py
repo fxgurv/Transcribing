@@ -13,6 +13,10 @@ def info(message: str, show_emoji: bool = True) -> None:
     emoji = "[INFO]" if show_emoji else ""
     print(colored(f"{emoji} {message}", "white"))
 
+def warning(message: str, show_emoji: bool = True) -> None:
+    emoji = "[INFO]" if show_emoji else ""
+    print(colored(f"{emoji} {message}", "green"))
+
 def get_fonts_dir() -> str:
     return os.path.join(ROOT_DIR, "fonts")
 
@@ -65,7 +69,7 @@ def get_max_chars() -> int:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
         return json.load(file)["max_chars"]
 
-def get_lines_chars() -> int:
+def get_max_lines() -> int:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
         return json.load(file)["max_lines"]
 
